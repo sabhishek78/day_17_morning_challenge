@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'dart:io';
+
 // Challenge 1
 // Write failing test cases for the next two challenges
 
@@ -22,4 +25,48 @@
 // Examples
 // almostSorted([1, 3, 5, 9, 11, 80, 15, 33, 37, 41] ) ➞ true
 
-main() {}
+List allPairs(List list, int target){
+  List resultList=[];
+
+  for(int i=0;i<list.length;i++)
+    {
+      List tempList =[];
+      for(int j=i+1;j<list.length;j++)
+        {
+          if(list[i]+list[j]==target)
+            {
+              tempList.add(list[i]);
+              tempList.add(list[j]);
+            }
+        }
+      if(tempList.length==2){
+        tempList.sort();
+        resultList.add(tempList);
+      }
+    }
+//resultList.sort();
+  //print(resultList);
+  return resultList;
+}
+
+
+bool almostSorted(List<int>list)
+{
+  int count=0;
+  
+ for(int i=0;i<list.length-1;i++)
+   {
+     if(list[i]>list[i+1])
+       {
+         count++;
+
+       }
+   }
+ return count==1;
+
+
+}
+main() {
+  print(allPairs([2, 4, 5, 3], 7));
+ print(almostSorted([5,5,5] ));
+}
